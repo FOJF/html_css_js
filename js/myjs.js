@@ -6,7 +6,7 @@ function updateF3() {
     document.getElementById("f3").innerHTML = "f3가 변경 됨"
 }
 
-function restoreF3() { 
+function restoreF3() {
     getOriginalF3();
     document.getElementById("f3").innerHTML = original3;
 }
