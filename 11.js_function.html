@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Function</title>
+</head>
+
+<script>
+    function basicFunction() {
+        console.log('hello world');
+    }
+
+    const variableFunction1 = function () {
+        console.log('hello world1');
+    }
+
+    // function 대신 =>로 대체 가능
+    // 만약 실행문이 1줄이라면, {} 생략 가능
+    const variableFunction2 = () => console.log('hello world2');
+
+    function returnFunction() {
+        console.log(makeString1());
+        console.log(makeString2());
+        console.log(makeString3());
+    }
+
+    function makeString1() {
+        // 놀라운 사실! : ; 장식임. 없어도 잘 실행 됨(근데 넣어주는게 아무래도 가독성이 좋을 듯)
+        return "Hello JavaScript";
+    }
+
+    const makeString2 = () => { return "Hello JavaScript 2" };
+    const makeString3 = () => "Hello JavaScript 2";
+
+    function paramFunction1(a, b) {
+        console.log(a + b);
+    }
+
+    function paramFunction2(str = '홍길동') {
+        console.log(str);
+    }
+
+    function paramFunction3(arr) {
+        console.log(arr);
+    }
+
+    function paramFunction4(...arr) {
+        console.log(arr);
+    }
+
+    function functionWithException() {
+        // 없는 함수 호출시 예외 발생
+        // 프론트에서 예외처리는 주로, 사용자에게 안내문구 알려주거나, 후속조치를 위해 사용
+        try {
+            example();
+        } catch (error) {
+            console.log(error);
+        }
+        console.log("hello world");
+    }
+
+    function showPerson() {
+        const p1 = createPerson('hong', 30);
+        console.log(p1);
+
+        console.log(p1.printPerson());
+    }
+
+    // function createPerson(name, age) {
+    //     return {name, age};
+    // }
+
+    function createPerson(name, age) {
+        return {
+            name,
+            age,
+            printPerson: function () {
+                return "이름은 " + this.name + " 나이는 " + this.age;
+            }
+            // printPerson: () => "이름은 " + this.name + " 나이는 " + this.age
+        };
+    }
+
+    function reloadFunction() {
+        window.location.reload();
+    }
+
+    function moveScreen() {
+        window.location.href = "https://naver.com";
+    }
+</script>
+
+<body>
+
+    <body>
+        <h2>JS 기본 함수 호출</h2>
+        <div>
+            <button onclick="basicFunction()">기본적인 함수 호출</button>
+        </div>
+
+        <div>
+            <p></p>
+            <button onclick="variableFunction1()">변수 함수 1</button>
+            <button onclick="variableFunction2()">변수 함수 2</button>
+        </div>
+
+        <div>
+            <p></p>
+            <button onclick="returnFunction()">리턴이 있는 함수 호출</button>
+
+        </div>
+
+        <div>
+            <p></p>
+            <button onclick="paramFunction1(1,2)">매게변수 있는 함수 호출 1</button>
+            <button onclick="paramFunction2('홍길동')">매게변수 있는 함수 호출 2</button>
+            <button onclick="paramFunction3([1,3,5,'adf',()=>console.log('신기하죠')])">매게변수 있는 함수 호출 3</button>
+
+            <!-- 대괄호[] 가 없으면 ...arr으로 받아서 바로 배열로 만들어버림 -->
+            <button onclick="paramFunction4(1,3,5,'adf',()=>console.log('신기하죠'))">매게변수 있는 함수 호출 4</button>
+
+            <h2>JS 에외처리</h2>
+
+            <button onclick="functionWithException()">예외 처리 함수 호출</button>
+
+            <h2>객체 안에 있는 함수 호출</h2>
+            <button onclick="showPerson()">person 객체 생성 및 조회</button>
+
+            <h2>window 객체</h2>
+            <button onclick="reloadFunction()">화면 새로 고침</button>
+            <button onclick="moveScreen()">화면 이동</button>
+
+            <!-- 사용자가 html화면내에서 특정행위(event)를 했을 때 자동 실행되는 함수 -->
+            <h2>event listener 객체 활용</h2>
+
+            <button id="button1">버튼 1</button>
+            <button onclick="scrollEvent()">버튼 2</button>
+
+            <h2>HTML 요소 동적으로 생성</h2>
+            <button onclick="addItem()">항목 추가</button>
+            <button onclick="minusItem()">항목 제거</button>
+
+            <div id="target">
+                <div id="text1">
+                    <input type="text" name="" id="">
+                </div>
+            </div>
+
+            <script>
+                let id = 1;
+                function addItem() {
+                    let target = document.getElementById('target');
+                    id++;
+                    target.innerHTML += '<div id="text' + id + '"><input type="text" name="" id=""></div>';
+
+                }
+
+                function minusItem() {
+                    let target = document.getElementById('text' + id);
+                    if (target) {
+                        target.remove();
+                        id--;
+                    }
+                }
+
+                const b1 = document.getElementById('button1');
+
+                if (b1) {
+                    b1.addEventListener('click', () => alert('hello world'));
+                }
+
+                function scrollEvent() {
+                    window.addEventListener('scroll', () => console.log('hello world 2'));
+                }
+            </script>
+        </div>
+    </body>
+
+</html>
