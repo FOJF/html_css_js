@@ -30,7 +30,7 @@
         function printResult() {
             const a = Number(document.getElementById('numberA').value);
             const b = Number(document.getElementById('numberB').value);
-            const operator = getInput('operator');
+            const operator = document.getElementById('operator').value;
 
             document.getElementById('result').innerHTML = operators[operator](a, b);
         }
