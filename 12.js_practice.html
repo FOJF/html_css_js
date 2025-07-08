@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Practice</title>
+</head>
+
+<body>
+    <select id="operator">
+        <option value="0">+</option>
+        <option value="1">-</option>
+        <option value="2">*</option>
+        <option value="3">/</option>
+    </select>
+    <input type="text" id="numberA">
+    <input type="text" id="numberB">
+    <button onclick="printResult()">실행</button>
+
+    <p id="result"></p>
+    <script>
+        const operators = [
+            (a, b) => a + b,
+            (a, b) => a - b,
+            (a, b) => a * b,
+            (a, b) => a / b
+        ];
+
+        function printResult() {
+            const a = Number(document.getElementById('numberA').value);
+            const b = Number(document.getElementById('numberB').value);
+            const operator = getInput('operator');
+
+            document.getElementById('result').innerHTML = operators[operator](a, b);
+        }
+    </script>
+</body>
+
+</html>

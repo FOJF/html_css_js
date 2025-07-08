@@ -132,6 +132,12 @@
             // ==은 타입은 체크하지 않음. ===은 타입까지 체크
             console.log(10 == "10"); // true (백엔드에서 json등을 통해서 넘어오는 데이터들은 전부 문자이기 때문에 이런방식을 사용할 경우 편리함을 제공해줌)
             console.log(10 === "10"); // false
+
+            let var1; // undefined
+            let var2 = null;
+
+            console.log(var1 == var2) // true;
+            console.log(var1 === var2) // false;
         }
     </script>
 </head>
