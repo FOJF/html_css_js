@@ -37,28 +37,28 @@
     <div class="container">
         <h3>게시글 상세 조회</h3>
 
-        <input type="text" id="postId" onkeypress="isEnter()">
+        <input type="text" id="postId">
         <button onclick="loadDetail()" class="btn btn-primary">조회</button>
 
         <table class="table" id="table">
         </table>
     </div>
     <script>
-        function isEnter() {
-            if (event.keyCode == 13) loadDetail();
-        }
-
         async function loadDetail() {
             const postId = document.getElementById("postId").value;
             let table = document.getElementById("table");
 
-            try {
-                const result = await axios.get(`http://localhost:8080/post/detail/${postId}`);
+            if (postId == "") {
+                table.innerHTML = "오류";
+                return;
+            }
 
-                table.innerHTML = `<tr><td>게시글 ID</td><td>${result.data.id}</td></tr><tr><td>제목</td><td>${result.data.title}</td></tr><tr><td>내용</td><td>${result.data.contents}</td></tr>`;
+            try {
+                const result = await axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+
+                table.innerHTML = `<tr><td>게시글 ID</td><td>${result.data.id}</td></tr><tr><td>제목</td><td>${result.data.title}</td></tr><tr><td>이메일</td><td>dummy${result.data.userId}@naver.com</td></tr><tr><td>내용</td><td>${result.data.body}</td></tr>`;
             } catch (error) {
-                console.log(error);
-                alert("입력값이 잘 못 되었습니다.");
+                table.innerHTML = "오류";
             }
         }
     </script>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +47,7 @@
         <tr>
           <th>ID</th>
           <th>제목</th>
-          <th>글쓴이</th>
+          <!-- <th>글쓴이</th> -->
           <th>작성일</th>
         </tr>
       </thead>
@@ -53,10 +55,10 @@
         <tr>
           <td><a href="post_detail.html">dummy 1</a></td>
           <td>hello java</td>
-          <td>hong@naver.com</td>
+          <!-- <td>hong@naver.com</td> -->
           <td>2025-07-07</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>2</td>
           <td>hello java2</td>
           <td>hong2@naver.com</td>
@@ -67,21 +69,25 @@
           <td>hello java3</td>
           <td>hong3@naver.com</td>
           <td>2025-07-07</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
 
   <script>
-    async function load() {
-      const result = await axios.get("https://jsonplaceholder.typicode.com/posts");
+    async function loadTable() {
+      const result = await axios.get("http://localhost:8080/post/list");
+      const data = result.data;
 
-      let tbodyInnerHTML = document.getElementById("tbody").innerHTML;
-
-      console.log(result);
+      let tbody = document.getElementById("tbody");
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i])
+        tbody.innerHTML += `<tr><td>${data[i].id}</td><td>${data[i].title}</td><td>2025-07-07</td></tr>`;
+        // <td>${data[i].email}</td>
+      }
     }
 
-    
+    loadTable();
   </script>
 
 </body>
