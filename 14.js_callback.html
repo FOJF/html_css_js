@@ -1,20 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS 콜백 함수</title>
 </head>
+
 <body>
     <button onclick="basicFunction()">일반 함수 예제</button>
 
-    <button onclick="">콜백 함수 예제 1</button>
+    <button onclick="callbackFunction1()">콜백 함수 예제 1</button>
+    <button onclick="callbackFunction2()">콜백 함수 예제 2</button>
+    <button onclick="callbackFunction3()">콜백 함수 예제 3</button>
     <script>
         function basicFunction() {
             console.log('hello world');
         }
 
-        
+        function callbackFunction1() {
+            userInput((name) => alert(name + "님 안녕하세요."));
+        }
+
+        function userInput(callback) {
+            callback('홍길동');
+        }
+
+        function callbackFunction2() {
+            const numbers = [1,2,3,4,5];
+
+            numbers.forEach((number) => console.log(number)); // forEach에 들어가는 함수도 콜백함수의 일종이다.
+            // js는 기본적으로 동기적으로 동작
+            console.log('hello world');
+        }
+
+        function callbackFunction3() {
+            // setTimeOut : 콜백함수처리 + 비동기적으로 동작하는 대표적인 함수
+            // 뒤에들어가는 number ms 뒤에 콜백함수 실행
+            setTimeout(() => console.log('hello world 1'), 1000);
+            console.log('hello world 2');
+            setTimeout(() => console.log('hello world 3'), 1000);
+            console.log('hello world 4');
+        }
     </script>
 </body>
+
 </html>
