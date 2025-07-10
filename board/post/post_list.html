@@ -37,7 +37,7 @@
   <div class="container">
     <h3>게시글 목록</h3>
     <div class="float-end">
-      <a href="./post_register.html" class="btn btn-primary">
+      <a href="./post_register_js_form.html" class="btn btn-primary">
         글쓰기
         <!-- <button class="btn btn-primary">글쓰기</button> -->
       </a>
@@ -81,7 +81,7 @@
 
       let tbody = document.getElementById("tbody");
       for (let i = 0; i < data.length; i++) {
-        console.log(data[i])
+        // console.log(data[i])
         tbody.innerHTML += `<tr><td>${data[i].id}</td><td>${data[i].title}</td><td>2025-07-07</td></tr>`;
         // <td>${data[i].email}</td>
       }
